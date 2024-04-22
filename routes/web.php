@@ -23,6 +23,9 @@ Route::get('curso/{curso}', function ($curso) {
 */
 
 Route::get('/', HomeController::class);
-Route::get('curso', [CursoController::class, 'index']);
-Route::get('curso/create', [CursoController::class, 'create']);
-Route::get('curso/{curso}', [CursoController::class, 'show']);
+
+Route::controller(CursoController::class)->group(function(){
+    Route::get('curso', 'index');
+    Route::get('curso/create', 'create');
+    Route::get('curso/{curso}', 'show');
+});

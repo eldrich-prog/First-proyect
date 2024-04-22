@@ -3,18 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Type\Integer;
 
 class CursoController extends Controller{
     public function index()
     {
-        return 'Bienvenido al curso';
+        return view('curso.index');
     }
     public function create()
     {
-        return 'Aqui puedes crear un curso';
+        return view('curso.create');
     }
     public function show($curso)
     {
-        return "Bienvenido al curso: ". $curso;
+        $curso = intval($curso);
+
+        if (is_integer($curso) == true) {
+            return view('curso.show', compact('curso'));
+        }
+        else {
+            return ('curso.error');
+        }
+        
     }
 }
